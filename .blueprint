@@ -1,0 +1,16 @@
+created:
+    - database/factories/DesignFactory.php
+    - database/factories/ComponentFactory.php
+    - database/factories/DriverFactory.php
+    - database/migrations/2024_10_22_193843_create_designs_table.php
+    - database/migrations/2024_10_22_193844_create_components_table.php
+    - database/migrations/2024_10_22_193845_create_drivers_table.php
+    - database/migrations/2024_10_22_193846_create_component_driver_table.php
+    - app/Models/Design.php
+    - app/Models/Component.php
+    - app/Models/Driver.php
+models:
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    Design: { status: 'enum:Public,Private', name: string, card_description: 'text nullable', price: 'double nullable', cost: 'double nullable', public_description: 'longtext nullable', private_description: 'longtext nullable', category: 'enum:Subwoofer,Full-Range,Two-Way,Three-Way,Four-Way,Portable,Esoteric,Upgrades', freq_low: 'double nullable', freq_high: 'double nullable', amplification: 'enum:Passive,Active,Hybrid', amp_details: 'text nullable', owner_id: 'id foreign:User', relationships: { hasMany: Component } }
+    Component: { position: 'enum:LF,MF,HF,Other', description: 'longtext nullable', freq_low: double, freq_hi: double, bl: 'double nullable', mms: 'double nullable', cms: 'double nullable', rms: 'double nullable', le: 'double nullable', re: 'double nullable', sd: 'double nullable', fs: 'double nullable', qes: 'double nullable', qms: 'double nullable', qts: 'double nullable', vas: 'double nullable', xmax: 'double nullable', xlim: 'double nullable', pe: 'double nullable', vd: 'double nullable', spl: 'double nullable', design_id: unsignedInteger, driver_id: unsignedInteger, relationships: { belongsTo: Design, hasOne: Driver } }
+    Driver: { brand: string, model: string, nominal_size: integer, nominal_impedance: integer, description: longtext, card_description: text, mfg_url: 'string nullable', mfg_price: 'double nullable', category: 'enum:Subwoofer,Woofer,Midrange,Coaxial,Tweeter,Compression_Driver,Exciter', bl: 'double nullable', mms: 'double nullable', cms: 'double nullable', rms: 'double nullable', le: 'double nullable', re: 'double nullable', sd: 'double nullable', fs: 'double nullable', qes: 'double nullable', qms: 'double nullable', qts: 'double nullable', vas: 'double nullable', xmax: 'double nullable', xlim: 'double nullable', pe: 'double nullable', vd: 'double nullable', spl: 'double nullable', owner_id: 'id foreign:User', relationships: { belongsToMany: Component } }

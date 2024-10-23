@@ -1,4 +1,6 @@
-    @if (Route::has('login'))
+
+
+@if (Route::has('login'))
         <nav class="bg-purple-950 flex">
             <!-- Logo -->
             <a  class="my-auto mx-0" href="{{route('home')}}">
@@ -11,25 +13,19 @@
             </div>
             </a>
             <!--Links-->
-            <div class="flex">
+            <div class="flex text-sm">
                 <ul class="flex">
                     <li class="content-center text-white px-5 hover:text-white hover:bg-purple-900">
-                    <a href="#">Link 1</a>
+                    <a href="{{route('designs')}}">Browse Designs</a>
                     </li>
                 <li class="content-center text-white px-5 hover:text-white hover:bg-purple-900">
-                <a href="#" >Link 2</a>
+                <a href="{{route('drivers')}}" >Driver Database</a>
                 </li>
                 <li class="content-center text-white px-5 hover:text-white hover:bg-purple-900">
-                <a href="#">Link 3</a>
+                <a href="#">SoapBox</a>
                 </li>
                 <li class="content-center text-white px-5 hover:text-white hover:bg-purple-900">
-                <a href="#" >Link 4</a>
-                </li>
-                <li class="content-center text-white px-5 hover:text-white hover:bg-purple-900">
-                <a href="#">Link 5</a>
-                </li>
-                <li class="content-center text-white px-5 hover:text-white hover:bg-purple-900">
-                <a href="#">Link 6</a>
+                <a href="#" >Community Forum</a>
                 </li>
                 </ul>
             </div>
@@ -37,7 +33,7 @@
             <!--Account-->
             <div class="ms-auto sm:hidden md:flex">
             @auth
-               <a href="{{ route('home') }}" class="content-center text-white px-5 hover:text-white hover:bg-purple-900">{{auth()->user()->name}}</a>
+               <a href="/manage" class="content-center text-white px-5 hover:text-white hover:bg-purple-900">{{auth()->user()->name}}</a>
                 <a href="{{ route('logout') }}" class="content-center text-white px-5 hover:text-white hover:bg-purple-900">Logout</a>
 
             @else

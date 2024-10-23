@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Dashboard;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Passwords\Confirm;
 use App\Livewire\Auth\Passwords\Email;
 use App\Livewire\Auth\Passwords\Reset;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Verify;
+use App\Livewire\Browse\DesignBrowser;
+use App\Livewire\FileBrowser;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +26,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
 Route::get('/logout', LogoutController::class)->name('logout');
+Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
+Route::view('/designs', 'DesignBrowser')->name('designs');
+Route::view('/drivers', 'DriverBrowser')->name('drivers');
+
+
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
